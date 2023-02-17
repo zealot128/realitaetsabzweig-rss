@@ -1,0 +1,28 @@
+name: Fetch posts
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron:  "32 6,18 * * *"
+
+jobs:
+  fetch_merges:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: run
+        run: ruby run.rb
+
+      - name: Commit and push changes
+        uses: devops-infra/action-commit-push@master
+        with:
+          github_token: "${{ secrets.GITHUB_TOKEN }}"
+          commit_message: "Auto: add rss-feed updates"
