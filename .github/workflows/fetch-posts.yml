@@ -5,10 +5,10 @@ on:
     branches:
       - main
   schedule:
-    - cron:  "32 6,18 * * *"
+    - cron:  "32 9,18,22 * * *"
 
 jobs:
-  fetch_merges:
+  fetch_posts:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -26,3 +26,10 @@ jobs:
         with:
           github_token: "${{ secrets.GITHUB_TOKEN }}"
           commit_message: "Auto: add rss-feed updates"
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./output
+
