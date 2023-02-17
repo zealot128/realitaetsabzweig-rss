@@ -6,4 +6,6 @@ Builds daily via Github actions.
 
 You can open the Feed under:
 
+https://zealot128.github.io/realitaetsabzweig-rss/output/rss.xml
+
 
